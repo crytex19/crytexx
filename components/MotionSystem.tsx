@@ -58,21 +58,25 @@ export default function MotionSystem() {
         );
       });
 
-      // ---------- generic reveal-on-scroll (gentle fade + small lift, no bounce) ----------
-      gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((el, i) => {
-        gsap.fromTo(
-          el,
-          { autoAlpha: 0, y: 16 },
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.6,
-            ease: 'cubic-bezier(0.16,1,0.3,1)',
-            delay: (i % 5) * 0.05,
-            scrollTrigger: { trigger: el, start: 'top 90%' }
-          }
-        );
-      });
+      // ---------- reveal-on-scroll, batched so a grid of tiles animates in as
+      // one staggered group rather than each tile firing on its own trigger ----------
+      const revealTargets = gsap.utils.toArray<HTMLElement>('[data-reveal]');
+      if (revealTargets.length) {
+        gsap.set(revealTargets, { autoAlpha: 0, y: 24 });
+        ScrollTrigger.batch(revealTargets, {
+          start: 'top 90%',
+          once: true,
+          onEnter: (batch) =>
+            gsap.to(batch, {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.65,
+              ease: 'cubic-bezier(0.16,1,0.3,1)',
+              stagger: 0.07,
+              overwrite: true
+            })
+        });
+      }
 
       // ---------- parallax (subtle) ----------
       gsap.utils.toArray<HTMLElement>('.parallax').forEach((el) => {

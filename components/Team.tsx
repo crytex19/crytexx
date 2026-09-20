@@ -5,7 +5,7 @@ import { siteConfig } from '@/lib/config';
 
 export default function Team() {
   const [open, setOpen] = useState(true);
-  const [openRow, setOpenRow] = useState<string | null>(null);
+  const [openCard, setOpenCard] = useState<string | null>(null);
 
   return (
     <div className="container team">
@@ -31,28 +31,33 @@ export default function Team() {
         aria-labelledby="team-toggle"
         hidden={!open}
       >
-        <ul className="lineup">
-          {siteConfig.team.map((member) => {
+        <ul className="team-grid">
+          {siteConfig.team.map((member, i) => {
             const panelId = `team-desc-${member.num}`;
-            const isOpen = openRow === member.num;
+            const isOpen = openCard === member.num;
             return (
-              <li className={`lineup__row${isOpen ? ' is-open' : ''}`} key={member.num}>
+              <li
+                className={`team-card${isOpen ? ' is-open' : ''}`}
+                data-reveal
+                style={{ '--i': i } as React.CSSProperties}
+                key={member.num}
+              >
                 <button
                   type="button"
-                  className="lineup__btn"
+                  className="team-card__toggle"
                   aria-expanded={isOpen}
                   aria-controls={panelId}
-                  onClick={() => setOpenRow(isOpen ? null : member.num)}
+                  onClick={() => setOpenCard(isOpen ? null : member.num)}
                 >
-                  <span className="lineup__num">{member.num}</span>
-                  <span className="lineup__name">{member.name}</span>
-                  <span className="lineup__icon" aria-hidden="true">
+                  <span className="team-card__num">{member.num}</span>
+                  <span className="team-card__name">{member.name}</span>
+                  <span className="team-card__plus" aria-hidden="true">
                     +
                   </span>
                 </button>
-                <div className="lineup__panel" id={panelId}>
-                  <div className="lineup__panel-inner">
-                    <p className="lineup__desc">{member.desc}</p>
+                <div className="team-card__panel" id={panelId}>
+                  <div className="team-card__panel-inner">
+                    <p className="team-card__desc">{member.desc}</p>
                   </div>
                 </div>
               </li>
