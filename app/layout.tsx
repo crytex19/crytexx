@@ -4,6 +4,7 @@ import { siteConfig } from '@/lib/config';
 import MotionSystem from '@/components/MotionSystem';
 import ScrollProgress from '@/components/ScrollProgress';
 import ConfettiClick from '@/components/ConfettiClick';
+import Cursor from '@/components/Cursor';
 
 export const metadata: Metadata = {
   title: siteConfig.business.title,
@@ -60,6 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <ScrollProgress />
         <ConfettiClick />
+        <Cursor />
         {children}
         <MotionSystem />
       </body>

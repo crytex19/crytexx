@@ -143,6 +143,25 @@ export default function MotionSystem() {
         }
       });
 
+      // ---------- magnetic buttons (subtle pull toward the cursor) ----------
+      if (!IS_TOUCH && !REDUCED_MOTION) {
+        document.querySelectorAll<HTMLElement>('.btn').forEach((btn) => {
+          const onMove = (e: MouseEvent) => {
+            const rect = btn.getBoundingClientRect();
+            const dx = (e.clientX - (rect.left + rect.width / 2)) / rect.width;
+            const dy = (e.clientY - (rect.top + rect.height / 2)) / rect.height;
+            gsap.to(btn, { x: dx * 10, y: dy * 6, duration: 0.4, ease: 'power3.out', overwrite: 'auto' });
+          };
+          const onLeave = () => gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.5)', overwrite: 'auto' });
+          btn.addEventListener('mousemove', onMove);
+          btn.addEventListener('mouseleave', onLeave);
+          cleanupFns.push(() => {
+            btn.removeEventListener('mousemove', onMove);
+            btn.removeEventListener('mouseleave', onLeave);
+          });
+        });
+      }
+
       const onResize = () => ScrollTrigger.refresh();
       window.addEventListener('resize', onResize);
       cleanupFns.push(() => window.removeEventListener('resize', onResize));

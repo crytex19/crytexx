@@ -13,6 +13,7 @@ const LINKS = [
 export default function Nav() {
   const [condensed, setCondensed] = useState(false);
   const [open, setOpen] = useState(false);
+  const [activeId, setActiveId] = useState<string | null>(null);
   const [overlayBg, setOverlayBg] = useState(LINKS[0].bg);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -34,6 +35,25 @@ export default function Nav() {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('scroll', onDir);
     };
+  }, []);
+
+  // highlight whichever section is currently in view
+  useEffect(() => {
+    const sections = LINKS.map((l) => document.querySelector(l.href)).filter(
+      (el): el is Element => Boolean(el)
+    );
+    if (!sections.length) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActiveId(`#${visible.target.id}`);
+      },
+      { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.25, 0.5] }
+    );
+    sections.forEach((s) => io.observe(s));
+    return () => io.disconnect();
   }, []);
 
   useEffect(() => {
@@ -61,7 +81,7 @@ export default function Nav() {
         </a>
         <nav className="nav__links" aria-label="Primary">
           {LINKS.map((l) => (
-            <a key={l.href} href={l.href}>
+            <a key={l.href} href={l.href} className={activeId === l.href ? 'is-active' : undefined}>
               {l.label}
             </a>
           ))}
