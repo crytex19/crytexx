@@ -120,7 +120,7 @@ export const siteConfig = {
     {
       num: '01',
       name: 'Mehwish Usman',
-      desc: 'Meet Mehwish Usman, the founder of Bon Appétit. I used to major in arts and home economics. At a young age after marriage I started hosting stalls, small events, parties etc and it was NOT easy. I soon realized the challenges of actually hosting a business in this field, from logistics, client expectations, workers leaving last minute, and accepting offers we had no business in doing just to make ends meet. Seeing these challenges, I wanted to execute my dreams to revolutionize the Event Hosting Industry in US, so that you can have the best events, without any hassle or struggle. You pick the date and the details, we handle the rest.'
+      desc: 'Meet Mehwish Usman, the founder of Bon Appétit. She majored in arts and home economics, and at a young age, shortly after getting married, she started hosting stalls, small events and parties — and it was not easy. She quickly learned the real challenges of running a business in this field: logistics, client expectations, workers leaving at the last minute, and taking on offers she had no business accepting, just to make ends meet. Seeing those challenges firsthand is what drove her to pursue her dream of revolutionizing the event hosting industry in the US, so that you can have the best events without any hassle or struggle. You pick the date and the details — she and the team handle the rest.'
     },
     {
       num: '02',
