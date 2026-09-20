@@ -5,9 +5,11 @@ export default function Services() {
     <section id="services">
       <div className="container">
         <div className="section-head">
-          <p className="eyebrow">What We Build</p>
+          <span className="eyebrow">What We Build</span>
           <h2 className="section-title mask-wrap">
-            <span className="mask-line">Every occasion, one crew</span>
+            <span className="mask-line">
+              Every occasion, <em>one crew</em>
+            </span>
           </h2>
         </div>
         <div className="services__grid">
@@ -18,7 +20,6 @@ export default function Services() {
                 <img src={s.image} alt={s.alt} loading="lazy" decoding="async" />
               </div>
               <div className="service__scrim"></div>
-              <div className="service__wash"></div>
               <div className="service__body">
                 <p className="service__num">{s.num}</p>
                 <h3 className="service__title">{s.title}</h3>

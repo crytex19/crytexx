@@ -5,7 +5,7 @@ import { siteConfig } from '@/lib/config';
 
 export default function Team() {
   const [open, setOpen] = useState(true);
-  const [openCard, setOpenCard] = useState<string | null>(null);
+  const [openRow, setOpenRow] = useState<string | null>(null);
 
   return (
     <div className="container team">
@@ -20,38 +20,39 @@ export default function Team() {
         <span className="team-toggle__label">Meet the Team</span>
         <span className="team-toggle__rule" aria-hidden="true"></span>
         <span className="team-toggle__chevron" aria-hidden="true">
-          {open ? '−' : '+'}
+          +
         </span>
       </button>
+
       <div
         className="team-grid-wrap"
         id="team-grid-wrap"
         role="region"
         aria-labelledby="team-toggle"
-        style={{ height: open ? 'auto' : '0px', overflow: open ? 'visible' : 'hidden' }}
+        hidden={!open}
       >
-        <ul className="team-grid">
+        <ul className="lineup">
           {siteConfig.team.map((member) => {
             const panelId = `team-desc-${member.num}`;
-            const isOpen = openCard === member.num;
+            const isOpen = openRow === member.num;
             return (
-              <li className={`team-card${isOpen ? ' is-open' : ''}`} data-team-card key={member.num}>
+              <li className={`lineup__row${isOpen ? ' is-open' : ''}`} key={member.num}>
                 <button
                   type="button"
-                  className="team-card__toggle"
+                  className="lineup__btn"
                   aria-expanded={isOpen}
                   aria-controls={panelId}
-                  onClick={() => setOpenCard(isOpen ? null : member.num)}
+                  onClick={() => setOpenRow(isOpen ? null : member.num)}
                 >
-                  <span className="team-card__num">{member.num}</span>
-                  <span className="team-card__name">{member.name}</span>
-                  <span className="team-card__plus" aria-hidden="true">
+                  <span className="lineup__num">{member.num}</span>
+                  <span className="lineup__name">{member.name}</span>
+                  <span className="lineup__icon" aria-hidden="true">
                     +
                   </span>
                 </button>
-                <div className="team-card__panel" id={panelId}>
-                  <div className="team-card__panel-inner">
-                    <p className="team-card__desc">{member.desc}</p>
+                <div className="lineup__panel" id={panelId}>
+                  <div className="lineup__panel-inner">
+                    <p className="lineup__desc">{member.desc}</p>
                   </div>
                 </div>
               </li>

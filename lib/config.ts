@@ -93,7 +93,13 @@ export const siteConfig = {
     sub: 'Event design, décor and styling for nikkahs, mehndis, receptions and milestones across NYC and Long Island.',
     image: '/assets/stage-01.jpg',
     imageAlt:
-      'Nikkah stage with a cascading blush and ivory floral arch around a tufted loveseat, gold-lettered monogram on the dance floor below'
+      'Nikkah stage with a cascading blush and ivory floral arch around a tufted loveseat, gold-lettered monogram on the dance floor below',
+    sticker: 'Est. 2022',
+    tags: ['Nikkah', 'Mehndi', 'Walima', 'Baby Showers', 'Birthdays'],
+    collage: [
+      { src: '/assets/mehndi-11.jpg', alt: 'Jewel-tone mehndi lounge with a peacock backdrop and carved bench' },
+      { src: '/assets/celebration-07.jpg', alt: 'Baby shower display with arch panels and a pastel dessert spread' }
+    ]
   },
 
   marquee: [

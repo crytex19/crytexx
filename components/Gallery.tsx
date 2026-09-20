@@ -98,14 +98,16 @@ export default function Gallery() {
 
   return (
     <>
-      <section id="work">
+      <section id="work" className="section--ink">
         <div className="container">
           <div className="section-head">
-            <p className="eyebrow">Signature Work</p>
+            <span className="eyebrow">Signature Work</span>
             <h2 className="section-title mask-wrap">
-              <span className="mask-line">The range, in full</span>
+              <span className="mask-line">
+                The range, <em>in full</em>
+              </span>
             </h2>
-            <p style={{ color: 'var(--ink-soft)', marginTop: '0.75rem' }}>
+            <p style={{ marginTop: '1rem' }}>
               A glimpse of our work across nikkahs, mehndis, receptions and milestones.
             </p>
           </div>

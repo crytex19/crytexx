@@ -182,15 +182,16 @@ export default function BookingForm() {
   })();
 
   return (
-    <section id="book" className="booking wash-trigger">
-      <div className="wash wash--blush" aria-hidden="true"></div>
+    <section id="book" className="booking section--pink">
       <div className="container">
         <div className="section-head">
-          <p className="eyebrow">Book a Consultation</p>
+          <span className="eyebrow">Book a Consultation</span>
           <h2 className="section-title mask-wrap">
-            <span className="mask-line">About 90 seconds</span>
+            <span className="mask-line">
+              About <em>90 seconds</em>
+            </span>
           </h2>
-          <p style={{ color: 'var(--ink-soft)', marginTop: '0.75rem' }}>
+          <p style={{ color: 'var(--ink-soft)', marginTop: '1rem' }}>
             Five short steps. Skip anything you&rsquo;re not sure of yet &mdash; we&rsquo;ll fill in the gaps on the call.
           </p>
         </div>

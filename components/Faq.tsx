@@ -10,9 +10,11 @@ export default function Faq() {
     <section>
       <div className="container">
         <div className="section-head">
-          <p className="eyebrow">Good to Know</p>
+          <span className="eyebrow">Good to Know</span>
           <h2 className="section-title mask-wrap">
-            <span className="mask-line">A few questions</span>
+            <span className="mask-line">
+              A few <em>questions</em>
+            </span>
           </h2>
         </div>
         <div className="faq-list">
