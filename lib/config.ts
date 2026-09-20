@@ -136,7 +136,7 @@ export const siteConfig = {
     {
       num: '03',
       name: 'Rehman',
-      desc: 'Meet Rehman, the son of Mehwish and Usman. He is the President of the junior lego federation in New York. At just the age of 16 he is an engineer of his own. He always happens to have a profound interest in drones. Hence he is the one who will capture the best drone shots for your event and capture the most sentimental and cinematic memories.'
+      desc: 'Meet Rehman, the son of Mehwish and Usman. He is the President of the junior lego federation in New York. At just the age of 16 he is an engineer of his own. He also happens to have a profound interest in drones. Hence he is the one who will capture the best drone shots for your event and capture the most sentimental and cinematic memories.'
     },
     {
       num: '04',
