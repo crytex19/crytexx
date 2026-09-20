@@ -3,6 +3,7 @@ import './globals.css';
 import { siteConfig } from '@/lib/config';
 import MotionSystem from '@/components/MotionSystem';
 import ScrollProgress from '@/components/ScrollProgress';
+import ConfettiClick from '@/components/ConfettiClick';
 
 export const metadata: Metadata = {
   title: siteConfig.business.title,
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <ScrollProgress />
+        <ConfettiClick />
         {children}
         <MotionSystem />
       </body>
