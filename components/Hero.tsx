@@ -1,4 +1,5 @@
 import { siteConfig } from '@/lib/config';
+import HeroConfetti from './HeroConfetti';
 
 export default function Hero() {
   const { hero } = siteConfig;
@@ -8,12 +9,15 @@ export default function Hero() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={hero.image} alt={hero.imageAlt} fetchPriority="high" />
       </div>
+      <HeroConfetti />
       <div className="container hero__content">
         <p className="eyebrow hero__eyebrow">{hero.eyebrow}</p>
         <h1>
           {hero.heading.map((line, i) => (
             <span className="mask-wrap" key={i}>
-              <span className="mask-line">{line}</span>
+              <span className="mask-line hero-line" style={{ animationDelay: `${0.2 + i * 0.15}s` }}>
+                {line}
+              </span>
             </span>
           ))}
         </h1>

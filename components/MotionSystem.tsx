@@ -41,23 +41,21 @@ export default function MotionSystem() {
       // ctx.revert() below undoes every tween/ScrollTrigger created inside.
       const ctx = gsap.context(() => {
       // ---------- mask-line reveals ----------
-      gsap.utils.toArray<HTMLElement>('.mask-line').forEach((line, i) => {
-        const inHero = line.closest('.hero');
-        if (inHero) {
-          gsap.fromTo(line, { yPercent: 110 }, { yPercent: 0, duration: 0.9, ease: 'cubic-bezier(0.16,1,0.3,1)', delay: 0.3 + i * 0.1 });
-        } else {
-          gsap.fromTo(
-            line,
-            { yPercent: 110 },
-            {
-              yPercent: 0,
-              duration: 0.7,
-              ease: 'cubic-bezier(0.16, 1, 0.3, 1)',
-              delay: (i % 4) * 0.06,
-              scrollTrigger: { trigger: line, start: 'top 90%' }
-            }
-          );
-        }
+      // The hero heading animates via pure CSS (.hero-line in globals.css) so
+      // it's guaranteed to play the instant the page paints, with zero
+      // dependency on this bundle finishing its dynamic import first.
+      gsap.utils.toArray<HTMLElement>('.mask-line:not(.hero-line)').forEach((line, i) => {
+        gsap.fromTo(
+          line,
+          { yPercent: 110 },
+          {
+            yPercent: 0,
+            duration: 0.7,
+            ease: 'cubic-bezier(0.16, 1, 0.3, 1)',
+            delay: (i % 4) * 0.06,
+            scrollTrigger: { trigger: line, start: 'top 90%' }
+          }
+        );
       });
 
       // ---------- generic reveal-on-scroll (gentle fade + small lift, no bounce) ----------
