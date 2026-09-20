@@ -86,7 +86,7 @@ fieldset { border: none; margin: 0; padding: 0; }
 /* ---------- custom cursor ---------- */
 html.has-cursor, html.has-cursor a, html.has-cursor button, html.has-cursor label, html.has-cursor input, html.has-cursor summary { cursor: none; }
 .cursor-dot, .cursor-ring { position: fixed; top: 0; left: 0; z-index: 9998; pointer-events: none; border-radius: 50%; will-change: transform; }
-.cursor-dot { width: 6px; height: 6px; background: var(--ink); margin: -3px 0 0 -3px; transition: opacity 0.2s, background 0.2s; }
+.cursor-dot { width: 6px; height: 6px; background: #000; margin: -3px 0 0 -3px; transition: opacity 0.2s, background 0.2s; }
 .cursor-ring {
   width: 34px; height: 34px; margin: -17px 0 0 -17px;
   border: 1.5px solid var(--line-strong);
