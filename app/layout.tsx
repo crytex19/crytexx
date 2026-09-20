@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { siteConfig } from '@/lib/config';
 import MotionSystem from '@/components/MotionSystem';
+import ScrollProgress from '@/components/ScrollProgress';
 
 export const metadata: Metadata = {
   title: siteConfig.business.title,
@@ -56,6 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <a className="skip-link" href="#main">
           Skip to content
         </a>
+        <ScrollProgress />
         {children}
         <MotionSystem />
       </body>

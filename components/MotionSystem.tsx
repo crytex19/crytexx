@@ -35,6 +35,11 @@ export default function MotionSystem() {
         });
       }
 
+      // Everything GSAP creates from here down is wrapped in a context so
+      // React StrictMode's dev-only double-invoke (mount -> cleanup -> mount)
+      // can't leave two competing tweens fighting over the same elements —
+      // ctx.revert() below undoes every tween/ScrollTrigger created inside.
+      const ctx = gsap.context(() => {
       // ---------- mask-line reveals ----------
       gsap.utils.toArray<HTMLElement>('.mask-line').forEach((line, i) => {
         const inHero = line.closest('.hero');
@@ -59,12 +64,13 @@ export default function MotionSystem() {
       gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((el, i) => {
         gsap.fromTo(
           el,
-          { autoAlpha: 0, y: 28 },
+          { autoAlpha: 0, y: 32, scale: 0.96 },
           {
             autoAlpha: 1,
             y: 0,
-            duration: 0.8,
-            ease: 'cubic-bezier(0.16,1,0.3,1)',
+            scale: 1,
+            duration: 0.9,
+            ease: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
             delay: (i % 5) * 0.07,
             scrollTrigger: { trigger: el, start: 'top 88%' }
           }
@@ -110,6 +116,8 @@ export default function MotionSystem() {
           .to(wash, { scaleY: 1, duration: 0.5, ease: 'cubic-bezier(0.16,1,0.3,1)' })
           .to(wash, { scaleY: 0, transformOrigin: 'bottom', duration: 0.5, ease: 'cubic-bezier(0.7,0,0.84,0)', delay: 0.1 });
       });
+      }); // end gsap.context
+      cleanupFns.push(() => ctx.revert());
 
       // ---------- magnetic cursor ring (desktop only) ----------
       if (!IS_TOUCH && !REDUCED_MOTION) {
