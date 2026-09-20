@@ -90,19 +90,10 @@ html.has-cursor, html.has-cursor a, html.has-cursor button, html.has-cursor labe
 .cursor-ring {
   width: 34px; height: 34px; margin: -17px 0 0 -17px;
   border: 1.5px solid var(--line-strong);
-  display: grid; place-items: center;
   transition: width 0.28s var(--ease-pop), height 0.28s var(--ease-pop), margin 0.28s var(--ease-pop),
               background 0.25s, border-color 0.25s, opacity 0.2s;
 }
 .cursor-ring--hover { width: 52px; height: 52px; margin: -26px 0 0 -26px; background: rgba(225,29,107,0.1); border-color: var(--rose); }
-.cursor-ring--media { width: 84px; height: 84px; margin: -42px 0 0 -42px; background: var(--rose); border-color: transparent; }
-.cursor-ring__label {
-  font-family: var(--font-display); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.06em;
-  text-transform: uppercase; color: var(--paper); opacity: 0; transform: scale(0.7);
-  transition: opacity 0.2s, transform 0.25s var(--ease-pop);
-}
-.cursor-ring--media .cursor-ring__label { opacity: 1; transform: scale(1); }
-.cursor-ring--media + .cursor-dot, .cursor-dot--hidden { opacity: 0; }
 @media (pointer: coarse) { .cursor-dot, .cursor-ring { display: none; } }
 
 /* ---------- scroll progress + confetti canvas ---------- */

@@ -39,23 +39,11 @@ export default function Cursor() {
     };
     raf = requestAnimationFrame(tick);
 
-    const MEDIA = '.gcell__btn, .select-card, .hero__photo, .about__media';
     const INTERACTIVE = 'a, button, input, select, textarea, label, .chip';
 
     const onOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (target.closest(MEDIA)) {
-        ring.classList.add('cursor-ring--media');
-        ring.classList.remove('cursor-ring--hover');
-        dot.classList.add('cursor-dot--hidden');
-      } else if (target.closest(INTERACTIVE)) {
-        ring.classList.add('cursor-ring--hover');
-        ring.classList.remove('cursor-ring--media');
-        dot.classList.remove('cursor-dot--hidden');
-      } else {
-        ring.classList.remove('cursor-ring--hover', 'cursor-ring--media');
-        dot.classList.remove('cursor-dot--hidden');
-      }
+      ring.classList.toggle('cursor-ring--hover', Boolean(target.closest(INTERACTIVE)));
     };
 
     const onLeave = () => {
@@ -84,9 +72,7 @@ export default function Cursor() {
 
   return (
     <>
-      <div className="cursor-ring" ref={ringRef} aria-hidden="true">
-        <span className="cursor-ring__label">View</span>
-      </div>
+      <div className="cursor-ring" ref={ringRef} aria-hidden="true" />
       <div className="cursor-dot" ref={dotRef} aria-hidden="true" />
     </>
   );
